@@ -48,7 +48,7 @@ main() {
         install_packages "General" ${general_packages[@]}
         install_packages "Dev" ${dev_packages[@]}
     elif [[ $? -eq 1 ]]; then 
-        whiptail --title "MESSAGE" --msgbox "Exiting the script without installing packages!" 8 78
+        whiptail --title "MESSAGE" --msgbox "Exiting the script without installing any packages!" 8 78
         exit 1
     fi
 }
