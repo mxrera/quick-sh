@@ -6,6 +6,15 @@ green_color="\e[0;32m"
 reset_color="\e[0m"
 
 welcome() {
+    install_dependencies
+    whiptail --title "Welcome" --msgbox "Welcome to QuickSH, a package installation assistant!\n\nYou can select packages with <Space>, press <Enter> to continue and <Tab> to switch between buttons." 10 60
+    main
+}
+
+install_dependencies(){
+    if check_deps_installed; then
+        return 0
+    fi
     echo -e "${green_color}[ INFO ]${reset_color} This script requires the following dependencies: wget, gpg, whiptail, curl"
     echo -ne "${green_color}[ INFO ]${reset_color} Do you want to proceed? [y/n]: "
     read -r
@@ -13,8 +22,6 @@ welcome() {
         exit 1
     fi
     deps
-    whiptail --title "Welcome" --msgbox "Welcome to QuickSH, a package installation assistant!\n\nYou can select packages with <Space>, press <Enter> to continue and <Tab> to switch between buttons." 10 60
-    main
 }
 
 main() {
@@ -37,12 +44,11 @@ main() {
                 "neovim" "code editor" OFF \
                 "tmux" "terminal multiplexer" OFF \
                 "nodejs" "javascript runtime" OFF \
+                "npm" "nodejs package manager" OFF \
                 "foxglove-studio" "ROS visualizer" OFF \
                  3>&1 1>&2 2>&3))
 
-    whiptail --title "CONFIRMATION" --yesno "The following packages will be installed: \
-                                            \n${general_packages[@]}${dev_packages[@]} \
-                                            \n\nDo you want to proceed?" 20 60
+    whiptail --title "CONFIRMATION" --yesno "The following packages will be installed: \n ${general_packages[@]} ${dev_packages[@]} \n\nDo you want to proceed?" 20 60
     if [[ $? -eq 0 ]]; then
         clear
         install_packages "General" ${general_packages[@]}
@@ -74,6 +80,7 @@ install_packages() {
             \"neovim\") neovim ;;
             \"tmux\") tmux ;;
             \"nodejs\") nodejs ;;
+            \"npm\") npm ;;
             \"foxglove-studio\") foxglove-studio ;;
         esac
     done
