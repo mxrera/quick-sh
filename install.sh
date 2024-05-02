@@ -6,12 +6,12 @@ green_color="\e[0;32m"
 reset_color="\e[0m"
 
 welcome() {
-    install_dependencies
-    whiptail --title "Welcome" --msgbox "Welcome to QuickSH, a package installation assistant!\n\nYou can select packages with <Space>, press <Enter> to continue and <Tab> to switch between buttons." 10 60
+    handle_dependencies
+    whiptail --title "Welcome" --backtitle "<Tab> moves; <Space> select; <Enter> continue;" --msgbox "Welcome to QuickSH, a package installation assistant!\n\n" 8 60
     main
 }
 
-install_dependencies(){
+handle_dependencies(){
     if check_deps_installed; then
         return 0
     fi
@@ -21,11 +21,11 @@ install_dependencies(){
     if [[ ! $REPLY =~ ^[Yy]$ ]] then
         exit 1
     fi
-    deps
+    install_deps
 }
 
 main() {
-    general_packages=($(whiptail --title "SELECT GENERAL PACKAGES TO INSTALL" --checklist \
+    general_packages=($(whiptail --title  "SELECT GENERAL PACKAGES TO INSTALL" --backtitle "<Tab> moves; <Space> select; <Enter> continue;" --checklist \
                 "List of packages" 20 100 10 \
                 "brave" "browser" OFF \
                 "gimp" "image editor" OFF \
@@ -36,7 +36,7 @@ main() {
                 "spotify" "music player" OFF \
                 "discord" "chat" OFF \
                  3>&1 1>&2 2>&3))
-    dev_packages=($(whiptail --title "SELECT DEV PACKAGES TO INSTALL" --checklist \
+    dev_packages=($(whiptail --title "SELECT DEV PACKAGES TO INSTALL" --backtitle "<Tab> moves; <Space> select; <Enter> continue;" --checklist \
                 "List of packages" 20 100 10 \
                 "net-tools" "networking tools" OFF \
                 "docker" "container development" OFF \
@@ -48,13 +48,20 @@ main() {
                 "foxglove-studio" "ROS visualizer" OFF \
                  3>&1 1>&2 2>&3))
 
-    whiptail --title "CONFIRMATION" --yesno "The following packages will be installed: \n ${general_packages[@]} ${dev_packages[@]} \n\nDo you want to proceed?" 20 60
+    packages=${general_packages[@]}${dev_packages[@]}
+
+    if [[ ${#packages[@]} -eq 0 ]]; then
+        whiptail --title "MESSAGE" --backtitle "<Tab> moves; <Space> select; <Enter> continue;" --msgbox "No packages selected. Exiting the script!" 8 78
+        exit 1
+    fi
+
+    whiptail --title "CONFIRMATION" --backtitle "<Tab> moves; <Space> select; <Enter> continue;" --yesno "The following packages will be installed: \n ${packages[@]}\n\nDo you want to proceed?" 20 60
     if [[ $? -eq 0 ]]; then
         clear
         install_packages "General" ${general_packages[@]}
         install_packages "Dev" ${dev_packages[@]}
     elif [[ $? -eq 1 ]]; then 
-        whiptail --title "MESSAGE" --msgbox "Exiting the script without installing any packages!" 8 78
+        whiptail --title "MESSAGE" --backtitle "<Tab> moves; <Space> select; <Enter> continue;" --msgbox "Exiting the script without installing any packages!" 8 78
         exit 1
     fi
 }
@@ -65,24 +72,9 @@ install_packages() {
             continue
         fi
         echo -e "${green_color}[ INFO ]${reset_color} Installing $package ..."
-        case $package in
-            \"brave\") brave;;
-            \"gimp\")gimp;;
-            \"inkscape\")inkscape;;
-            \"vlc\")vlc;;
-            \"audacity\")audacity;;
-            \"obs-studio\") obs-studio ;;
-            \"spotify\")spotify ;;
-            \"discord\") discord ;;
-            \"net-tools\") net-tools ;;
-            \"docker\") docker ;;
-            \"vscode\") vscode ;;
-            \"neovim\") neovim ;;
-            \"tmux\") tmux ;;
-            \"nodejs\") nodejs ;;
-            \"npm\") npm ;;
-            \"foxglove-studio\") foxglove-studio ;;
-        esac
+        package=$(echo $package | tr -d '"') # extract the package name from the quotes
+        $package
+        echo -e "${green_color}[ INFO ]${reset_color} End of $package installation."
     done
 }
 

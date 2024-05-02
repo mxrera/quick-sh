@@ -1,11 +1,15 @@
-<h1 align="center"> 
-    QuickSH 
+<h1 align="center">
+    QuickSH
 </h1>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/Ubuntu-23.10-brightgreen?logo=ubuntu" alt="Ubuntu version">
-    <!-- <img src="https://img.shields.io/badge/Ubuntu-24.04-brightgreen?logo=ubuntu" alt="Ubuntu version"> -->
+    <img src="https://img.shields.io/badge/ShellScript-grey?logo=gnu-bash" alt="ShellScript">
+    <img src="https://img.shields.io/badge/Ubuntu-24.04_|_23.10_|_22.04-brightgreen?logo=ubuntu" alt="Ubuntu versions">
     <img src="https://img.shields.io/badge/whiptail-brightgreen?label=dependencies" alt="Dependencies">
+</p>
+
+<p align="center">
+    <img src="./images/quick-sh.png" alt="QuickSH">
 </p>
 
 A shell script to automate the installation of packages and tools in Ubuntu.
@@ -34,4 +38,5 @@ $ ./install.sh
 - [`neovim`](https://neovim.io/): code editor
 - [`tmux`](https://github.com/tmux/tmux/wiki): terminal multiplexer
 - [`nodejs`](https://nodejs.org/en): javascript runtime
+- [`npm`](https://www.npmjs.com/): nodejs package manager
 - [`foxglove-studio`](https://foxglove.dev/download): robotics visualization tool
