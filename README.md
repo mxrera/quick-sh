@@ -40,3 +40,9 @@ $ ./install.sh
 - [`nodejs`](https://nodejs.org/en): javascript runtime
 - [`npm`](https://www.npmjs.com/): nodejs package manager
 - [`foxglove-studio`](https://foxglove.dev/download): robotics visualization tool
+- [`wireshark`](https://www.wireshark.org/): network protocol analyzer
+- [`neofetch`](https://github.com/dylanaraps/neofetch): system information
+- [`tree`](https://linux.die.net/man/1/tree): directory tree
+- [`netcat`](https://linux.die.net/man/1/nc): network utility
+- [`tcpdump`](https://www.tcpdump.org/): network packet analyzer
+- [`iputils`](https://manpages.debian.org/stretch/iputils-ping/ping.8.en.html): network utility

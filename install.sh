@@ -41,11 +41,20 @@ main() {
                 "net-tools" "networking tools" OFF \
                 "docker" "container development" OFF \
                 "vscode" "code editor" OFF \
-                "neovim" "code editor" OFF \
-                "tmux" "terminal multiplexer" OFF \
                 "nodejs" "javascript runtime" OFF \
                 "npm" "nodejs package manager" OFF \
+                "wireshark" "network protocol analyzer" OFF \
                 "foxglove-studio" "ROS visualizer" OFF \
+                 3>&1 1>&2 2>&3))
+    terminal_packages=($(whiptail --title "SELECT TERMINAL PACKAGES TO INSTALL" --backtitle "<Tab> moves; <Space> select; <Enter> continue;" --checklist \
+                "List of packages" 20 100 10 \
+                "neovim" "code editor" OFF \
+                "tmux" "terminal multiplexer" OFF \
+                "neofetch" "system information" OFF \
+                "tree" "directory tree" OFF \
+                "netcat" "network utility" OFF \
+                "tcpdump" "network packet analyzer" OFF \
+                "iputils" "network utility" OFF \
                  3>&1 1>&2 2>&3))
 
     packages=${general_packages[@]}${dev_packages[@]}
