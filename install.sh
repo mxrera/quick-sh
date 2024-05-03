@@ -5,12 +5,6 @@
 green_color="\e[0;32m"
 reset_color="\e[0m"
 
-welcome() {
-    handle_dependencies
-    whiptail --title "Welcome" --backtitle "<Tab> moves; <Space> select; <Enter> continue;" --msgbox "Welcome to QuickSH, a package installation assistant!\n\n" 8 60
-    main
-}
-
 handle_dependencies(){
     if check_deps_installed; then
         return 0
@@ -25,6 +19,11 @@ handle_dependencies(){
 }
 
 main() {
+    dynamic_import
+    handle_dependencies
+    
+    whiptail --title "Welcome" --backtitle "<Tab> moves; <Space> select; <Enter> continue;" --msgbox "Welcome to QuickSH, a package installation assistant!\n\n" 8 60
+
     general_packages=($(whiptail --title  "SELECT GENERAL PACKAGES TO INSTALL" --backtitle "<Tab> moves; <Space> select; <Enter> continue;" --checklist \
                 "List of packages" 20 100 10 \
                 "brave" "browser" OFF \
@@ -67,8 +66,7 @@ main() {
     whiptail --title "CONFIRMATION" --backtitle "<Tab> moves; <Space> select; <Enter> continue;" --yesno "The following packages will be installed: \n ${packages[@]}\n\nDo you want to proceed?" 20 60
     if [[ $? -eq 0 ]]; then
         clear
-        install_packages "General" ${general_packages[@]}
-        install_packages "Dev" ${dev_packages[@]}
+        install_packages ${packages[@]}
     elif [[ $? -eq 1 ]]; then 
         whiptail --title "MESSAGE" --backtitle "<Tab> moves; <Space> select; <Enter> continue;" --msgbox "Exiting the script without installing any packages!" 8 78
         exit 1
@@ -77,9 +75,6 @@ main() {
 
 install_packages() {
     for package in $@; do
-        if [ $package == "General" ] || [ $package == "Dev" ]; then
-            continue
-        fi
         echo -e "${green_color}[ INFO ]${reset_color} Installing $package ..."
         package=$(echo $package | tr -d '"') # extract the package name from the quotes
         $package
@@ -87,5 +82,4 @@ install_packages() {
     done
 }
 
-dynamic_import
-welcome
+main

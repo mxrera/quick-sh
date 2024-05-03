@@ -1,6 +1,5 @@
 #! /bin/bash
 
-
 check_deps_installed() {
     for dependency in "wget" "gpg" "whiptail" "curl"; do
         if ! apt -qq list $dependency 2>/dev/null | grep -q "\[installed\]"; then
