@@ -57,7 +57,7 @@ main() {
                 "iputils" "network utility" OFF \
                  3>&1 1>&2 2>&3))
 
-    packages=${general_packages[@]}${dev_packages[@]}
+    packages=${general_packages[@]}${dev_packages[@]}${terminal_packages[@]}
 
     if [[ ${#packages[@]} -eq 0 ]]; then
         whiptail --title "MESSAGE" --backtitle "<Tab> moves; <Space> select; <Enter> continue;" --msgbox "No packages selected. Exiting the script!" 8 78
@@ -87,4 +87,5 @@ install_packages() {
     done
 }
 
+dynamic_import
 welcome
