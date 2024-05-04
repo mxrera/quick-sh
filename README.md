@@ -32,6 +32,7 @@ $ ./install.sh
 - [`obs-studio`](https://obsproject.com/): screen recorder
 - [`spotify`](https://www.spotify.com/us/download/linux/): music player
 - [`discord`](https://discord.com/): chat
+- [`anydesk`](https://anydesk.com): remote desktop
 - [`net-tools`](https://packages.ubuntu.com/search?keywords=net-tools): network tools
 - [`docker`](https://docs.docker.com/engine/install/ubuntu/): container tool
 - [`vscode`](https://code.visualstudio.com/): code editor
@@ -43,6 +44,7 @@ $ ./install.sh
 - [`wireshark`](https://www.wireshark.org/): network protocol analyzer
 - [`neofetch`](https://github.com/dylanaraps/neofetch): system information
 - [`tree`](https://linux.die.net/man/1/tree): directory tree
+- [`xclip`](https://linux.die.net/man/1/xclip): clipboard manager
 - [`netcat`](https://linux.die.net/man/1/nc): network utility
 - [`tcpdump`](https://www.tcpdump.org/): network packet analyzer
 - [`iputils`](https://manpages.debian.org/stretch/iputils-ping/ping.8.en.html): network utility
