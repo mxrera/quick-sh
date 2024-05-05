@@ -38,6 +38,7 @@ $ ./install.sh
 - [`vscode`](https://code.visualstudio.com/): code editor
 - [`neovim`](https://neovim.io/): code editor
 - [`tmux`](https://github.com/tmux/tmux/wiki): terminal multiplexer
+- [`pip`](https://pip.pypa.io/en/stable/): python package manager
 - [`nodejs`](https://nodejs.org/en): javascript runtime
 - [`npm`](https://www.npmjs.com/): nodejs package manager
 - [`foxglove-studio`](https://foxglove.dev/download): robotics visualization tool

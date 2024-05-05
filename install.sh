@@ -42,6 +42,7 @@ main() {
                 "net-tools" "networking tools" OFF \
                 "docker" "container development" OFF \
                 "vscode" "code editor" OFF \
+                "pip" "python package manager" OFF \
                 "nodejs" "javascript runtime" OFF \
                 "npm" "nodejs package manager" OFF \
                 "wireshark" "network protocol analyzer" OFF \
