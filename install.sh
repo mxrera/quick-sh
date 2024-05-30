@@ -33,6 +33,7 @@ main() {
                 "vlc" "media player" OFF \
                 "audacity" "audio editor" OFF \
                 "obs-studio" "screen casting and streaming app" OFF \
+                "obsidian" "note taking app" OFF \
                 "spotify" "music player" OFF \
                 "discord" "chat" OFF \
                 "anydesk" "remote desktop" OFF \

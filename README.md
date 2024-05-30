@@ -30,6 +30,7 @@ $ ./install.sh
 - [`vlc`](https://www.videolan.org/vlc/download-ubuntu.html): media player
 - [`audacity`](https://www.audacityteam.org/): audio editor
 - [`obs-studio`](https://obsproject.com/): screen recorder
+- [`obsidian`](https://obsidian.md/): note-taking app
 - [`spotify`](https://www.spotify.com/us/download/linux/): music player
 - [`discord`](https://discord.com/): chat
 - [`anydesk`](https://anydesk.com): remote desktop
