@@ -12,7 +12,7 @@ handle_dependencies(){
     echo -e "${green_color}[ INFO ]${reset_color} This script requires the following dependencies: wget, gpg, whiptail, curl"
     echo -ne "${green_color}[ INFO ]${reset_color} Do you want to proceed? [y/n]: "
     read -r
-    if [[ ! $REPLY =~ ^[Yy]$ ]] then
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
         exit 1
     fi
     install_deps
